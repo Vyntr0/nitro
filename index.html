@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#070b16">
+<title>Cryovex Gift String Lab</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+:root{color-scheme:dark;--bg:#070b16;--panel:#0d1424;--panel2:#101b30;--line:rgba(127,170,225,.14);--muted:#8292ad;--text:#edf5ff;--cyan:#43e5ff;--blue:#4c8dff;--purple:#9b72ff;--green:#54e6b0;--red:#ff6685}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 15% 0%,rgba(28,89,170,.17),transparent 38%),radial-gradient(ellipse at 90% 18%,rgba(111,53,194,.12),transparent 32%),var(--bg);color:var(--text);font-family:Manrope,system-ui,sans-serif}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;background-image:linear-gradient(rgba(105,152,214,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(105,152,214,.045) 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(to bottom,black,transparent 80%)}
+button,select{font:inherit}.shell{max-width:1440px;margin:auto;padding:28px 34px 44px;position:relative}.topbar{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding:2px 0 22px;gap:20px}.brand{display:flex;align-items:center;gap:13px}.logo{width:43px;height:43px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#173c70,#151d43);border:1px solid rgba(67,229,255,.42);box-shadow:0 0 28px rgba(44,169,255,.17);color:var(--cyan);font-size:23px;font-weight:800;transform:skew(-5deg)}.brand-name{font-size:16px;font-weight:800;letter-spacing:.12em}.brand-sub{font-size:10px;color:var(--muted);letter-spacing:.2em;margin-top:3px}.top-right{display:flex;align-items:center;gap:10px}.status{display:flex;align-items:center;gap:8px;padding:9px 13px;border:1px solid var(--line);border-radius:30px;color:#a9bbd5;font-size:11px;letter-spacing:.08em}.dot{width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 10px var(--green)}.version{font:11px 'DM Mono',monospace;color:#667894}
+.hero{padding:37px 0 26px;display:flex;justify-content:space-between;align-items:end;gap:20px}.eyebrow{font:11px 'DM Mono',monospace;color:var(--cyan);letter-spacing:.2em;text-transform:uppercase}.hero h1{font-size:clamp(28px,4vw,43px);line-height:1.12;margin:10px 0 9px;letter-spacing:-.045em}.hero h1 span{background:linear-gradient(90deg,var(--cyan),#8c9cff 65%,#bb82ff);background-clip:text;color:transparent}.hero p{margin:0;color:var(--muted);font-size:13px;max-width:620px;line-height:1.7}.demo-tag{border:1px solid rgba(155,114,255,.32);background:rgba(155,114,255,.08);padding:9px 13px;border-radius:9px;color:#c7b4ff;font:10px 'DM Mono',monospace;white-space:nowrap}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:9px 0 18px}.stat,.panel{background:linear-gradient(145deg,rgba(17,28,48,.96),rgba(10,17,31,.96));border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 35px rgba(0,0,0,.12)}.stat{padding:17px 20px;position:relative;overflow:hidden}.stat:after{content:"";position:absolute;width:95px;height:95px;right:-30px;top:-40px;border-radius:50%;background:var(--glow);filter:blur(35px);opacity:.18}.stat-label{font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}.stat-value{font:500 clamp(23px,3vw,31px) 'DM Mono',monospace;margin-top:9px;letter-spacing:-.05em}.stat-value small{font:11px Manrope,sans-serif;color:var(--muted);letter-spacing:0;margin-left:5px}.stat:nth-child(1){--glow:var(--cyan)}.stat:nth-child(2){--glow:var(--blue)}.stat:nth-child(3){--glow:var(--purple)}
+.layout{display:grid;grid-template-columns:minmax(280px, .78fr) minmax(0,1.55fr);gap:16px;align-items:start}.panel{padding:21px}.panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:19px}.panel-title{font-size:13px;font-weight:800;letter-spacing:.04em}.panel-kicker{font:10px 'DM Mono',monospace;color:var(--muted)}.field-label{display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:700;color:#b9c9df;margin:18px 0 9px}.field-label span{font:10px 'DM Mono',monospace;color:var(--muted);font-weight:400}.select-wrap{position:relative}.select-wrap:after{content:"⌄";position:absolute;right:14px;top:10px;color:var(--cyan);pointer-events:none}.select{appearance:none;width:100%;background:#0a1221;border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:var(--text);outline:none}.select:focus{border-color:rgba(67,229,255,.6);box-shadow:0 0 0 3px rgba(67,229,255,.08)}
+.prefix{background:#080f1d;border:1px solid var(--line);border-radius:10px;padding:12px;color:#a7bbd6;font:10px 'DM Mono',monospace;overflow-wrap:anywhere}.prefix b{color:var(--cyan);font-weight:500}.hint{font-size:10px;color:#71829e;line-height:1.6;margin-top:8px}.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:22px}.btn{border:1px solid transparent;border-radius:10px;padding:12px 14px;font-size:11px;font-weight:800;cursor:pointer;transition:transform .18s,border-color .18s,box-shadow .18s,background .18s}.btn:hover{transform:translateY(-2px)}.btn:active{transform:translateY(0)}.btn-primary{grid-column:1/-1;background:linear-gradient(100deg,#147dbb,#315fe4 65%,#7054d9);color:white;box-shadow:0 8px 22px rgba(41,120,232,.22)}.btn-primary:hover{box-shadow:0 10px 28px rgba(41,160,255,.35)}.btn-stop{background:rgba(255,102,133,.08);border-color:rgba(255,102,133,.25);color:#ff91a6}.btn-stop:disabled{opacity:.35;cursor:not-allowed}.btn-quiet{background:#111d31;border-color:var(--line);color:#c6d6ed}.btn-quiet:hover{border-color:rgba(67,229,255,.35)}.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.settings{margin-top:18px;padding-top:17px;border-top:1px solid var(--line)}.setting-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;font-size:11px;color:#b7c6dc}.setting-row input{accent-color:var(--cyan)}.setting-row select{width:120px;padding:7px 9px;font-size:10px}
+.output-panel{min-width:0}.output-toolbar{display:flex;align-items:center;gap:8px}.count-pill{font:10px 'DM Mono',monospace;color:var(--cyan);background:rgba(67,229,255,.08);border:1px solid rgba(67,229,255,.18);padding:6px 9px;border-radius:20px}.output-box{background:#070d18;border:1px solid rgba(111,154,213,.14);border-radius:12px;min-height:425px;max-height:560px;overflow:auto;padding:10px 13px;scrollbar-width:thin;scrollbar-color:#263e60 transparent}.output-empty{height:395px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#6e809b;gap:11px}.empty-icon{font-size:27px;color:#3b628b}.output-empty strong{font-size:12px;color:#9aabc4}.output-empty span{font-size:10px}.entry{display:flex;align-items:center;gap:12px;padding:10px 4px;border-bottom:1px solid rgba(127,170,225,.08);font:11px 'DM Mono',monospace;animation:appear .18s ease}.entry:last-child{border-bottom:0}.entry-num{color:#526783;width:34px;flex:none;font-size:9px}.entry-code{color:#c3d8f2;overflow-wrap:anywhere;flex:1;min-width:0}.entry-code .url{color:#48d9f1}.entry-copy{border:0;background:transparent;color:#728aa8;cursor:pointer;font-size:13px;padding:4px 6px}.entry-copy:hover{color:var(--cyan)}.output-foot{display:flex;justify-content:space-between;gap:12px;margin-top:12px;color:#71829e;font-size:10px}.output-foot b{color:#9fb4d0;font-weight:600}.notice{margin-top:16px;padding:12px 14px;border:1px solid rgba(155,114,255,.18);border-radius:10px;background:rgba(100,71,173,.06);font-size:10px;color:#a9a0c7;line-height:1.6}.notice strong{color:#c9b8ff}.footer{display:flex;justify-content:space-between;gap:15px;margin-top:25px;padding-top:17px;border-top:1px solid var(--line);color:#586a85;font:9px 'DM Mono',monospace;letter-spacing:.07em}.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,15px);opacity:0;pointer-events:none;background:#14243a;border:1px solid rgba(67,229,255,.35);color:#dffaff;padding:11px 16px;border-radius:10px;font-size:11px;box-shadow:0 8px 30px #0008;transition:.25s;z-index:5}.toast.show{opacity:1;transform:translate(-50%,0)}@keyframes appear{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}@media(max-width:850px){.layout{grid-template-columns:1fr}.output-box{min-height:320px}.output-empty{height:290px}}@media(max-width:560px){.shell{padding:18px 14px 30px}.topbar{align-items:flex-start}.top-right{flex-direction:column;align-items:flex-end}.hero{align-items:flex-start;flex-direction:column;padding-top:28px}.stats{gap:8px}.stat{padding:13px 11px}.stat-label{font-size:8px}.stat-value{font-size:20px}.panel{padding:16px}.footer{flex-direction:column}.demo-tag{font-size:9px}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="topbar">
+  <div class="brand"><div class="logo">C</div><div><div class="brand-name">CRYOVEX</div><div class="brand-sub">GIFT STRING LAB</div></div></div>
+  <div class="top-right"><div class="status"><span class="dot"></span><span id="statusText">SYSTEM READY</span></div><div class="version">LAB BUILD&nbsp; / &nbsp;01.0.0</div></div>
+</header>
+<section class="hero">
+  <div><div class="eyebrow">STRING GENERATION ENVIRONMENT</div><h1>Build strings.<br><span>Explore the output.</span></h1><p>A high-speed, browser-based fictional string generator. Tune your configuration, run a session and inspect the latest output in real time.</p></div>
+  <div class="demo-tag">◆ &nbsp; FICTIONAL DEMO MODE</div>
+</section>
+<section class="stats" aria-label="Generation statistics">
+  <div class="stat"><div class="stat-label">Total generated</div><div class="stat-value" id="total">0</div></div>
+  <div class="stat"><div class="stat-label">Current speed</div><div class="stat-value" id="speed">0 <small>strings / sec</small></div></div>
+  <div class="stat"><div class="stat-label">Session runtime</div><div class="stat-value" id="runtime">00:00 <small>min : sec</small></div></div>
+</section>
+<main class="layout">
+  <aside class="panel">
+    <div class="panel-head"><div class="panel-title">Generator controls</div><div class="panel-kicker">01 / CONFIG</div></div>
+    <div class="field-label">String length <span>CHARACTERS</span></div>
+    <div class="select-wrap"><select class="select" id="length"><option value="16">16 characters</option><option value="18">18 characters</option><option value="20" selected>20 characters</option><option value="24">24 characters</option></select></div>
+    <div class="field-label">Output format <span>FIXED PREFIX</span></div>
+    <div class="prefix"><b>https://discord.gg/gift/</b><span id="preview">••••••••••••••••••••</span></div>
+    <div class="hint">Each generated value is random demo text. It is not checked against Discord and cannot be redeemed.</div>
+    <div class="actions">
+      <button class="btn btn-primary" id="start">▶ &nbsp; START GENERATION</button>
+      <button class="btn btn-stop" id="stop" disabled>■ &nbsp; STOP</button>
+      <button class="btn btn-quiet" id="clear">⌫ &nbsp; CLEAR OUTPUT</button>
+      <button class="btn btn-quiet" id="copyAll">▣ &nbsp; COPY ALL</button>
+      <button class="btn btn-quiet" id="export">↓ &nbsp; EXPORT TXT</button>
+    </div>
+    <div class="settings">
+      <div class="panel-head" style="margin-bottom:8px"><div class="panel-title">Settings</div><div class="panel-kicker">02 / OPTIONS</div></div>
+      <div class="setting-row"><label for="batch">Generation batch</label><select class="select" id="batch"><option value="250">250 / cycle</option><option value="1000" selected>1,000 / cycle</option><option value="2500">2,500 / cycle</option><option value="5000">5,000 / cycle</option></select></div>
+      <div class="setting-row"><label for="autoScroll">Auto-scroll output</label><input type="checkbox" id="autoScroll" checked></div>
+      <div class="setting-row"><label for="sound">Completion sound</label><input type="checkbox" id="sound"></div>
+      <div class="hint">Larger batches can improve throughput. Actual speed depends on your device and browser.</div>
+    </div>
+  </aside>
+  <section class="panel output-panel">
+    <div class="panel-head"><div><div class="panel-title">Live output stream</div><div class="panel-kicker" style="margin-top:5px">LATEST GENERATED STRINGS</div></div><div class="output-toolbar"><span class="count-pill" id="visibleCount">0 / 100</span></div></div>
+    <div class="output-box" id="output" aria-live="polite"><div class="output-empty" id="empty"><div class="empty-icon">⌁</div><strong>Awaiting generation input</strong><span>Press start to populate the output stream.</span></div></div>
+    <div class="output-foot"><span>DISPLAYING <b id="displayRange">0 entries</b></span><span>OUTPUT BUFFER <b>100 MAX</b></span></div>
+    <div class="notice"><strong>DEMO NOTICE</strong> &nbsp; Cryovex Gift String Lab generates fictional random strings for interface and performance demonstrations only. It does not connect to Discord, validate codes, or generate real Nitro gifts.</div>
+  </section>
+</main>
+<footer class="footer"><span>CRYOVEX LABS &nbsp;•&nbsp; CLIENT-SIDE GENERATION</span><span>NO API &nbsp; / &nbsp; NO DATABASE &nbsp; / &nbsp; LOCAL SESSION</span></footer>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+(() => {
+  'use strict';
+  const PREFIX = 'https://discord.gg/gift/';
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const $ = id => document.getElementById(id);
+  const state = { total: 0, stored: [], visible: [], running: false, startedAt: 0, elapsedBefore: 0, lastRateAt: 0, lastRateTotal: 0, speed: 0, worker: null, renderPending: false };
+  const fmt = n => n.toLocaleString('en-US');
+  let toastTimer;
+  function toast(message) { const el=$('toast'); el.textContent=message; el.classList.add('show'); clearTimeout(toastTimer); toastTimer=setTimeout(()=>el.classList.remove('show'),2200); }
+  function setRunning(running) {
+    state.running=running;
+    $('start').disabled=running; $('stop').disabled=!running;
+    $('statusText').textContent=running?'GENERATION ACTIVE':'SYSTEM READY';
+    $('start').textContent=running?'⟳  GENERATING…':'▶  START GENERATION';
+  }
+  function makeWorker() {
+    const source = `
+      let active=false, timer=null;
+      const chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      function makeString(len) {
+        const bytes=new Uint8Array(len);
+        crypto.getRandomValues(bytes);
+        let s='';
+        for(let i=0;i<len;i++) s+=chars[bytes[i]&63];
+        return s;
+      }
+      function run(len,batch) {
+        if(!active)return;
+        const out=new Array(batch);
+        for(let i=0;i<batch;i++) out[i]=makeString(len);
+        postMessage({type:'batch',items:out});
+        timer=setTimeout(()=>run(len,batch),0);
+      }
+      onmessage=e=>{
+        const d=e.data;
+        if(d.type==='start'){active=true;clearTimeout(timer);run(d.length,d.batch);}
+        if(d.type==='stop'){active=false;clearTimeout(timer);}
+      };
+    `;
+    const blob = new Blob([source], {type:'text/javascript'});
+    const url = URL.createObjectURL(blob);
+    const worker = new Worker(url);
+    URL.revokeObjectURL(url);
+    worker.onmessage = e => {
+      if (!state.running || e.data.type !== 'batch') return;
+      const items=e.data.items;
+      state.total += items.length;
+      for (const item of items) {
+        const full=PREFIX+item;
+        state.stored.push(full);
+        if(state.stored.length>250000) state.stored.shift();
+        state.visible.push(full);
+        if(state.visible.length>100) state.visible.shift();
+      }
+      scheduleRender();
+    };
+    worker.onerror = () => { stop(); toast('Generation worker stopped unexpectedly.'); };
+    return worker;
+  }
+  function start() {
+    if(state.running) return;
+    if(!window.Worker || !window.crypto?.getRandomValues) { toast('This browser does not support the required generation features.'); return; }
+    state.worker=makeWorker();
+    state.startedAt=performance.now();
+    state.lastRateAt=state.startedAt; state.lastRateTotal=state.total; state.speed=0;
+    setRunning(true);
+    state.worker.postMessage({type:'start',length:Number($('length').value),batch:Number($('batch').value)});
+    updateStats();
+  }
+  function stop() {
+    if(!state.running) return;
+    state.worker?.postMessage({type:'stop'});
+    state.worker?.terminate(); state.worker=null;
+    state.elapsedBefore += performance.now()-state.startedAt;
+    setRunning(false); state.speed=0; updateStats();
+    if($('sound').checked) beep();
+  }
+  function clearOutput() {
+    state.stored=[]; state.visible=[]; state.total=0; state.elapsedBefore=0;
+    if(state.running){state.worker?.terminate();state.worker=null;setRunning(false);}
+    state.speed=0;state.startedAt=0;state.lastRateAt=0;state.lastRateTotal=0;
+    render();updateStats();toast('Output and session counters cleared.');
+  }
+  function scheduleRender() {
+    if(state.renderPending)return;
+    state.renderPending=true;
+    requestAnimationFrame(()=>{state.renderPending=false;render();});
+  }
+  function render() {
+    const box=$('output');
+    if(!state.visible.length){
+      box.innerHTML='<div class="output-empty" id="empty"><div class="empty-icon">⌁</div><strong>Awaiting generation input</strong><span>Press start to populate the output stream.</span></div>';
+    } else {
+      const fragment=document.createDocumentFragment();
+      state.visible.slice().reverse().forEach((value,index)=>{
+        const row=document.createElement('div');row.className='entry';
+        const num=document.createElement('span');num.className='entry-num';num.textContent='#'+fmt(state.total-index);
+        const code=document.createElement('span');code.className='entry-code';
+        const prefix=document.createElement('span');prefix.className='url';prefix.textContent=PREFIX;
+        code.append(prefix,document.createTextNode(value.slice(PREFIX.length)));
+        const copy=document.createElement('button');copy.className='entry-copy';copy.type='button';copy.title='Copy this string';copy.textContent='▣';
+        copy.addEventListener('click',()=>copyText(value,'String copied.'));
+        row.append(num,code,copy);fragment.append(row);
+      });
+      box.replaceChildren(fragment);
+      if($('autoScroll').checked) box.scrollTop=0;
+    }
+    $('visibleCount').textContent=state.visible.length+' / 100';
+    $('displayRange').textContent=fmt(state.visible.length)+' entries';
+  }
+  function updateStats() {
+    $('total').textContent=fmt(state.total);
+    $('speed').innerHTML=fmt(Math.round(state.speed))+' <small>strings / sec</small>';
+    const elapsed=state.elapsedBefore+(state.running?performance.now()-state.startedAt:0);
+    const seconds=Math.floor(elapsed/1000);
+    $('runtime').innerHTML=String(Math.floor(seconds/60)).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0')+' <small>min : sec</small>';
+  }
+  function tick() {
+    if(state.running) {
+      const now=performance.now(), dt=(now-state.lastRateAt)/1000;
+      if(dt>=0.5) {
+        state.speed=(state.total-state.lastRateTotal)/dt;
+        state.lastRateAt=now;state.lastRateTotal=state.total;
+      }
+    }
+    updateStats();
+    requestAnimationFrame(tick);
+  }
+  function copyText(text,message) {
+    if(!text){toast('There are no generated strings to copy.');return;}
+    navigator.clipboard?.writeText(text).then(()=>toast(message)).catch(()=>fallbackCopy(text,message));
+  }
+  function fallbackCopy(text,message) {
+    const area=document.createElement('textarea');area.value=text;area.style.position='fixed';area.style.opacity='0';document.body.append(area);area.select();
+    try{document.execCommand('copy');toast(message);}catch(e){toast('Copy was blocked by this browser.');}area.remove();
+  }
+  function exportTxt() {
+    if(!state.stored.length){toast('Generate some strings before exporting.');return;}
+    const blob=new Blob([state.stored.join('\\n')+'\\n'],{type:'text/plain;charset=utf-8'});
+    const url=URL.createObjectURL(blob),a=document.createElement('a');
+    a.href=url;a.download='cryovex-fictional-strings.txt';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+    toast('TXT export prepared ('+fmt(state.stored.length)+' strings).');
+  }
+  function beep() {
+    try{const ctx=new (window.AudioContext||window.webkitAudioContext)(),o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.frequency.value=660;g.gain.setValueAtTime(.05,ctx.currentTime);g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.18);o.start();o.stop(ctx.currentTime+.18);o.onended=()=>ctx.close();}catch(e){}
+  }
+  $('start').addEventListener('click',start);
+  $('stop').addEventListener('click',stop);
+  $('clear').addEventListener('click',clearOutput);
+  $('copyAll').addEventListener('click',()=>copyText(state.stored.join('\\n'),'Copied '+fmt(state.stored.length)+' strings.'));
+  $('export').addEventListener('click',exportTxt);
+  $('length').addEventListener('change',()=>{$('preview').textContent='•'.repeat(Number($('length').value));if(state.running){stop();toast('Stopped. Start again to use the new length.');}});
+  $('preview').textContent='•'.repeat(Number($('length').value));
+  window.addEventListener('beforeunload',()=>state.worker?.terminate());
+  render();requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>
